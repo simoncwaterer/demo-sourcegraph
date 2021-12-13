@@ -1,0 +1,27 @@
+query ($query: String!) {
+  search(query: $query, version: V2, patternType:regexp) {
+    results {
+      results {
+        ... on Repository {
+          ...RepositoryFields
+        }
+      }
+    }
+  }
+}
+
+fragment RepositoryFields on Repository {
+  name
+  url
+  externalURLs {
+    serviceType
+    url
+  }
+  label {
+    html
+  }
+}
+
+{
+    "query": "file:circle.*\\.yml lang:Yaml -\\simage: repo:facebook select:repo"
+}
