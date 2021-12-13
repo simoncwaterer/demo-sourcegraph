@@ -11,24 +11,24 @@ lang:Scala match { ... case ... match {...} } count:1000
 If we are using a CI pipeline and we want to updated a particular docker image how can we determine the impact of the change? What repos and files are effected? Lets try and find the impacted files. Lets assume our CI pipeilines live in Yaml files and that they contains a ```image:``` key.
 
 ```sourcegraph
-file:\.yml image:
+lang:Yaml image:
 ```
 
 So if we look at our results we see quite a number of different CI pipelines in use. Obviously in reality this would probably not be the case. So lets narrow our search. In this case I am going to assume we are using the Cirrus CI pipeline.
 
 ```sourcegraph
-file:circle.*\.yml image: count:all
+file:circle.*\.yml lang:Yaml image: count:all
 ```
 
 File and other filters use regular expressions by default. Lets update the pattern so that we are sure that we have found the relevant files.
 
 ```sourcegraph
-file:circle.*\.yml -\simage: count:all patternType:regExp
+file:circle.*\.yml -\simage: lang:Yaml count:all patternType:regexp
 ```
 So we can see that we have a lot of results returned. Lets select one of the files and take a look at it. So in addition to enabling us to search the code we can add additional context information. So for source code this might include code coverage and code quality information from third parties such as code cov and sonarqube. For a configuation file we can add git blame information - help us understand who was responsible for changes etc.
 
 ```sourcegraph
-file:circle.*\.yml lang:Yaml -\simage: repo:facebook patternType:regExp
+file:circle.*\.yml lang:Yaml -\simage: lang:Yaml repo:facebook patternType:regexp
 ```
 
 But we can also search code diffs and commit messages and define time intervals to again help us understand the changes that have been made. Lets take a look at an example of that. Now when searching code diffs and commit messages we need to limit the scope of the search to less than 10K repos. There seem to be some facebook repos in our results so let narrow down our scope a little.
@@ -36,13 +36,13 @@ But we can also search code diffs and commit messages and define time intervals 
 So lets see when we added or updated a docker image for python in the last year
 
 ```sourcegraph
-file:circle.*\.yml lang:Yaml -\s+image:.*python repo:facebook type:diff select:commit.diff.added after:"1 year ago" patternType:regExp
+file:circle.*\.yml lang:Yaml -\s+image:.*python repo:facebook type:diff select:commit.diff.added after:"1 year ago" patternType:regexp
 ```
 
 But perhaps we are only interested in the repos or files rather than the matches. We can use this info as input to a report or project plan potentially. So lets only select the repos rather than the matches.
 
 ```sourcegraph
-file:circle.*\.yml lang:Yaml -\simage: repo:facebook select:repo patternType:regExp
+file:circle.*\.yml lang:Yaml -\simage: repo:facebook select:repo patternType:regexp
 ```
 
 We can also generate this data via our GraphQL API.
@@ -81,6 +81,6 @@ We have a number of different versions in use. Now if I look at the documentatio
 Now currently we can't monitor every repo - so we need to limit the number of repos. Lets take a look at the Unity-Technologies repos.
 
 ```sourcegraph
-file:circle.*\.yml lang:Yaml -\simage:\s+circleci/node repo:^github\.com/Unity-Technologies/com.unity.cv.datasetvisualizer$ type:diff patterntype:regexp
+file:circle.*\.yml lang:Yaml -\simage:\s+circleci/node repo:^github\.com/Unity-Technologies/com\.unity\.cv\.datasetvisualizer$ type:diff patterntype:regexp
 ```
 
