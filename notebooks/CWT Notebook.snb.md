@@ -1,70 +1,6 @@
 # CWT Notebook
 
 
-## Introduction - Big Code
-
-_High level overview of Sourcegraph mission, use cases and value. Obviously this may be provided by the AE. Even if this is not the first meeting, not everyone on the call may have attended previous meetings and a quick refresher may still be useful._
-
-Outline what we are going to go through today
-
-So in this session I am planning to show you the following:
-
-
-* How we can use Sourcegraph to search across all of your code, regardless of repository and code host
-* How we can then use search as a platform to provide insights into the codebase and automate code changes.
-
-Before we begin we take a look at the SG platform, I just wanted to spend a couple of moments outlining the problems and challenges SG are helping companies to overcome.
-
-The need to be world class at developing software is strategic for the majority of organisations. It’s critical to be able to innovate and then accelerate delivery to both internal and external customers.
-
-But one of the challenges is the increasing complexity facing most engineering organisations -
-
-
-
-* More developers producing 
-* More code that is distributed
-* Across a larger number of code repositories and is developed using
-* An increasing variety of development languages
-
-It is easy for developers to lose flow and it is harder to understand their codebase.
-
-This impacts daily activities, such as:
-
-
-
-* How quickly can new team members be onboarded?
-* How easy is it to find example code to understand how an API or functions is used
-* Can we find and reuse existing code?
-* Do we know which package and library versions are in use?
-* Can we track down the code responsible for error and security issues?
-* How can we get an understanding of the impact of potential code changes?
-
-The result is that developers and engineers spend most of their time --around 75% or more--is trying to better understand the code. Not writing new code, or modifying existing code.
-
-We believe what is needed is to provide a way for developers to be able to find and understand all their code. One that is integrated with other development tools, and can scale for the largest enterprises.
-
-
-## SG Platform
-
-So Sourcegraph is a platform that:
-
-
-
-1. Enables developers to find code across all repositories, code hosts, languages, history and branches. To enable them to search code, commit messages and code diffs.
-2. Add information to help developers better understand code - 
-    1. Where is this API implemented?
-    2. Where else is it called?
-    3. Who owns it?
-    4. When was it last changed?
-3. Allow teams to automate large scale code refactors
-
-And we will see that SG interfaces and integrates with many of the development tools that your team may be using today.
-
-Of course this includes code hosts such as Github and Gitlab, regardless if these are self hosted or cloud based. But also tools such as IDEs and coverage tools. We’ll take a look at some of these during the platform overview.
-
-So let us jump in and take a look at the capabilities of SG and see how development teams can use the platform.
-
-
 ## Product Tour
 
 [https://sourcegraph.com/search](https://sourcegraph.com/search)
@@ -76,8 +12,6 @@ So this is the browser based UI for sourcegraph. As you can see at first glance 
 
 Now in this instance I am using a public SG instance at sourcegraph.com. Our clients either use a managed instance that we deploy and run for them, or run their own instance on public or private cloud infrastructure. From a deployment perspective we provide support for kubernetes and also docker compose.
 
-Anyone can use the public instance to search over 2M public repositories on Github and Gitlab. And you can add your own public repositories. So we can search across all these repos - the code, code diffs and commit messages.
-
 Looking below the search bar I can see a history of searches that I have run and repos that I have visited.
 
 ### Search Contexts
@@ -85,7 +19,7 @@ Looking below the search bar I can see a history of searches that I have run and
 Looking at the search bar on the left I can see a drop down labelled context. A search context represents a set of repositories at specific revisions on a SG instance that will be targeted by the search queries I execute. So for example I could create a search context that targets my frontend code.
 
 
-## Search walk through
+## Search walkthrough
 
 ### Literal Search
 
@@ -96,7 +30,7 @@ So if I wanted to find some scary code I might run the following search query -
 [https://sourcegraph.com/search?q=context:global+here+be+dragons&patternType=literal](https://sourcegraph.com/search?q=context:global+here+be+dragons&patternType=literal)
 
 ```sourcegraph
-here be dragons patternType=literal
+here be dragons patternType:literal
 ```
 
 So in terms of the results they are coming from different repos, multiple languages, markdown files and xml configuration files.
@@ -110,7 +44,7 @@ Here we have a log file - a Sourcegraph log file in fact - I can see the followi
 _performing background repo update_
 
 ```sourcegraph
-performing background repo update patternType=literal
+performing background repo update patternType:literal
 ```
 
 ### Regular Expression
@@ -126,7 +60,7 @@ And stick to using literal search in the first instance.
 [https://sourcegraph.com/search?q=context:global+new+auth+provider&patternType=literal](https://sourcegraph.com/search?q=context:global+new+auth+provider&patternType=literal)
 
 ```sourcegraph
-new auth provider patternType=literal
+new auth provider patternType:literal
 ```
 
 So again I get results from lots of different repos from different code hosts. Because I am using literal search the results I am seeing are from comments in source code and configuration files. And that certainly gives me a starting point.
@@ -136,7 +70,7 @@ But what if we switched to a regular expression search instead?
 [https://sourcegraph.com/search?q=context:global+new+auth+provider&patternType=regexp](https://sourcegraph.com/search?q=context:global+new+auth+provider&patternType=regexp)
 
 ```sourcegraph
-new auth provider patternType=regex
+new auth provider patternType:regexp
 ```
 
 So now I am getting more results from the source code itself. But we are still searching across all repos, can we narrow it down a little?
@@ -147,7 +81,7 @@ If we look at the left hand side of the search results we can see the  SG has ki
 [https://sourcegraph.com/search?q=context:global+new+auth+provider+lang:go+&patternType=regexp](https://sourcegraph.com/search?q=context:global+new+auth+provider+lang:go+&patternType=regexp)
 
 ```sourcegraph
-new auth provider lang:go patternType=regex
+new auth provider lang:go patternType:regexp
 ```
 
 And we also might want to exclude certain files, test files for example, these probably are not going to help me.
@@ -156,7 +90,7 @@ And we also might want to exclude certain files, test files for example, these p
 [https://sourcegraph.com/search?q=context:global+new+auth+provider+lang:go+-file:_test%5C.go%24+&patternType=regexp](https://sourcegraph.com/search?q=context:global+new+auth+provider+lang:go+-file:_test%5C.go%24+&patternType=regexp)
 
 ```sourcegraph
-new auth provider lang:go -file:_test\.go$ patternType=regex
+new auth provider lang:go -file:_test\.go$ patternType:regexp
 ```
 
 And of course I’m only really interested in sourcegraph codebase in this instance so I can add a filter so that we are only looking at certain repos.
@@ -164,7 +98,7 @@ And of course I’m only really interested in sourcegraph codebase in this insta
 [https://sourcegraph.com/search?q=context:global+new+auth+provider+lang:go+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+-file:_test%5C.go%24+&patternType=regexp](https://sourcegraph.com/search?q=context:global+new+auth+provider+lang:go+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+-file:_test%5C.go%24+&patternType=regexp)
 
 ```sourcegraph
-new auth provider lang:go -file:_test\.go$ repo:^github\.com/sourcegraph/.* patternType=regex
+new auth provider lang:go -file:_test\.go$ repo:^github\.com/sourcegraph/.* patternType:regex
 ```
 
 So now we can see some files which I am confident are really going to be relevant to my task. I can see the number of matches in each file and the files are ordered by star ranking on github. So we have a few comments but if I scroll down I see a file with 11 matches. So this might be worth taking a closer look at. Let us select this file.
@@ -192,7 +126,7 @@ So let me select references for this function. This brings up another pane show 
 So here we can see we are not only able to search the source code but we can also search code diffs and commits as well. So not only can I search across a specific snapshot of the codebase, I can also search by time as well. So this helps me find and understand when code changes.
 
 ```sourcegraph
-NewAuthzProvider repo:^github\.com/sourcegraph/sourcegraph$ type:diff select:commit.diff.added before:"3 months ago" patternType=regex
+NewAuthzProvider repo:^github\.com/sourcegraph/sourcegraph$ type:diff select:commit.diff.added before:"3 months ago" patternType:regexp
 ```
 
 Let us go back to the code view for a moment.
