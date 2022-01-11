@@ -93,7 +93,7 @@ And of course I’m only really interested in sourcegraph codebase in this insta
 [https://sourcegraph.com/search?q=context:global+new+auth+provider+lang:go+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+-file:_test%5C.go%24+&patternType=regexp](https://sourcegraph.com/search?q=context:global+new+auth+provider+lang:go+repo:%5Egithub%5C.com/sourcegraph/sourcegraph%24+-file:_test%5C.go%24+&patternType=regexp)
 
 ```sourcegraph
-new auth provider lang:go -file:_test\.go$ repo:^github\.com/sourcegraph/.* patternType:regex
+new auth provider lang:go -file:_test\.go$ repo:^github\.com/sourcegraph/.* patternType:regexp
 ```
 
 So now we can see some files which I am confident are really going to be relevant to my task. I can see the number of matches in each file and the files are ordered by star ranking on github. So we have a few comments but if I scroll down I see a file with 11 matches. So this might be worth taking a closer look at. Let us select this file.
@@ -138,13 +138,20 @@ try {:[_]} catch (:[e]) { } finally {:[_]} lang:java patterntype:structural
 
 Database vs stream based processing - push v pull
 
-
 ### Code Insights
 
-Tracking Migrations 
-Tracking Adoption
-Tracking Deprecations
+* Tracking Migrations 
+* Tracking Adoption
+* Tracking Deprecations
 
 [https://demo.sourcegraph.com/insights/dashboards/all](https://demo.sourcegraph.com/insights/dashboards/all)
 
 ### Batch Changes
+
+Automate code and configuration changes
+
+[https://demo.sourcegraph.com/batch-changes](https://demo.sourcegraph.com/batch-changes)
+
+```sourcegraph
+^FROM (\w+\/)?\w+:latest($|\s) file:Dockerfile patterntype:regexp
+```
