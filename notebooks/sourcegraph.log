@@ -1,0 +1,52 @@
+10:05:11                  postgres | 2021-10-19 10:05:11.323 UTC [65] LOG:  starting PostgreSQL 12.8 on x86_64-alpine-linux-musl, compiled by gcc (Alpine 9.3.0) 9.3.0, 64-bit
+10:05:11           zoekt-webserver | 2021/10/19 10:05:11 loading 2 shards
+10:05:11           zoekt-webserver | 2021/10/19 10:05:11 listening on 127.0.0.1:3070
+10:05:11                  frontend | t=2021-10-19T10:05:11+0000 lvl=info msg="endpoints: using rendezvous hashing"
+10:05:16                  frontend | Jaeger URL from env  http://127.0.0.1:16686
+10:05:16                  frontend |  
+10:05:16                  frontend |                    ╓╦╬╬╬╦╖
+10:05:16                  frontend |                   ╬╬╬╬╬╬╬╬╬
+10:05:16                  frontend |                  ╞╬╬╬╬╬╬╬╬╬╬           ╓╦╦╦╦┐
+10:05:16                  frontend |                   ╬╬╬╬╬╬╬╬╬╬╕        ╔╪╪╪╪╪╪╪╪╕
+10:05:16                  frontend |                   ╘╬╬╬╬╬╬╬╬╬╬      ╔╪╪╪╪╪╪╪╪╪╪╪
+10:05:16                  frontend |                    ╬╬╬╬╬╬╬╬╬╬╗   ╔╪╪╪╪╪╪╪╪╪╪╪╪┘
+10:05:16                  frontend |       ╓╦╦╖┐         ╬╬╬╬╬╬╬╬╬╬ ╔╝╪╪╪╪╪╪╪╪╪╪╪╜
+10:05:16                  frontend |     ╬╪╪╪╪╪╪╪╪╬╗╦╖   ╠╬╬╬╬╬╬╬╬╝╪╪╪╪╪╪╪╪╪╪╪╪╜
+10:05:16                  frontend |    ╠╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╝╝╬╬╬╬╝╪╪╪╪╪╪╪╪╪╪╪╪╜
+10:05:16                  frontend |    └╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╩
+10:05:16                  frontend |      ╙╩╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╖
+10:05:16                  frontend |           └╙╩╬╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╬╦╗┐
+10:05:16                  frontend |                  ╙╜╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╗╦╖
+10:05:16                  frontend |                  ┌╬╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╬
+10:05:16                  frontend |                ┌╗╪╪╪╪╪╪╪╪╪╪╪╪╬╬╬╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪╪
+10:05:16                  frontend |              ┌╗╪╪╪╪╪╪╪╪╪╪╪╪╬╬╬╬╬╬╬╬╬ ╙╜╩╪╪╪╪╪╪╪╪╪╪╪╪╜
+10:05:16                  frontend |            ┌╦╪╪╪╪╪╪╪╪╪╪╪╝╙╬╬╬╬╬╬╬╬╬╬       └╙╩╬╪╪╝╜
+10:05:16                  frontend |           ╦╪╪╪╪╪╪╪╪╪╪╪╪┘  ╠╬╬╬╬╬╬╬╬╬╬
+10:05:16                  frontend |          ╬╪╪╪╪╪╪╪╪╪╪╪┘     ╬╬╬╬╬╬╬╬╬╬┐
+10:05:16                  frontend |          ╙╪╪╪╪╪╪╪╪╪╜       ╘╬╬╬╬╬╬╬╬╬╬
+10:05:16                  frontend |           └╩╪╪╪╪╝╙          ╬╬╬╬╬╬╬╬╬╬╕
+10:05:16                  frontend |                             └╬╬╬╬╬╬╬╬╬╛
+10:05:16                  frontend |                               ╩╬╬╬╬╬╬┘
+10:05:16                  frontend |  
+10:05:16                  frontend | ✱ Sourcegraph is ready at: https://localhost
+10:05:21                  frontend | t=2021-10-19T10:05:21+0000 lvl=warn msg=http method=POST url=/.internal/repos/index code=200 duration=4.7428077s
+10:05:21         zoekt-indexserver | 2021/10/19 10:05:21 updating index github.com/sourcegraph/sourcegraph@HEAD=4f48140ee0bfc6bc3cab9bd4541d4b9cbd76a609
+10:05:22              repo-updater | t=2021-10-19T10:05:22+0000 lvl=warn msg="Reset stalled record back to 'queued' state" name=repo_sync_worker_resetter id=372 timeSinceLastHeartbeat=9m29.6470141s
+10:05:22                 gitserver | t=2021-10-19T10:05:22+0000 lvl=warn msg=http method=POST url=/git/github.com/sourcegraph/sourcegraph/git-upload-pack code=200 duration=1.0293919s
+10:05:31                 gitserver | t=2021-10-19T10:05:31+0000 lvl=warn msg=http method=POST url=/git/github.com/sourcegraph/sourcegraph/git-upload-pack code=200 duration=8.7773615s
+10:05:32              repo-updater | t=2021-10-19T10:05:32+0000 lvl=warn msg="syncer: deleting not seen repos" svc=GitHub id=1 seen=1 error=nil
+10:06:01                  frontend | t=2021-10-19T10:06:01+0000 lvl=warn msg=http method=POST url=/.api/graphql?Extensions code=200 duration=3.3006816s x_forwarded_for=172.17.0.1 user=1
+10:06:37                 gitserver | t=2021-10-19T10:06:37+0000 lvl=warn msg=http method=POST url=/repo-update code=200 duration=30.3435977s
+10:06:42                  frontend | t=2021-10-19T10:06:42+0000 lvl=eror msg="Error looking up user for session." uid=1 error="context canceled"
+10:06:43                  frontend | t=2021-10-19T10:06:43+0000 lvl=warn msg=http method=POST url=/.api/graphql?Extensions code=200 duration=1.4591847s x_forwarded_for=172.17.0.1 user=1
+10:06:52           zoekt-webserver | 2021/10/19 10:06:52 loading 1 shards
+10:06:52         zoekt-indexserver | 2021/10/19 10:06:52 updated index github.com/sourcegraph/sourcegraph@HEAD=4f48140ee0bfc6bc3cab9bd4541d4b9cbd76a609 in 1m30.9019858s
+10:07:12         zoekt-indexserver | 2021/10/19 10:07:12 updating index github.com/sourcegraph/sourcegraph@HEAD=71ff24af8000bea375d6ded9db0e62f7f92728a6
+10:07:19                 gitserver | t=2021-10-19T10:07:19+0000 lvl=warn msg=http method=POST url=/git/github.com/sourcegraph/sourcegraph/git-upload-pack code=200 duration=6.8884406s
+10:07:23                 gitserver | t=2021-10-19T10:07:23+0000 lvl=eror msg="Failed to fetch" repo=10.211.55.3/DefaultCollection/Test/_git/Test error="failed to update with output \"fatal: unable to access 'http://10.211.55.3/DefaultCollection/Test/_git/Test/': Failed to connect to 10.211.55.3 port 80 after 76263 ms: Connection refused\\n\": exit status 128"
+10:07:23                 gitserver | t=2021-10-19T10:07:23+0000 lvl=eror msg="performing background repo update" error="failed to fetch: failed to update with output \"fatal: unable to access 'http://10.211.55.3/DefaultCollection/Test/_git/Test/': Failed to connect to 10.211.55.3 port 80 after 76263 ms: Connection refused\\n\": exit status 128"
+10:07:23                 gitserver | t=2021-10-19T10:07:23+0000 lvl=warn msg=http method=POST url=/repo-update code=200 duration=1m16.4961217s
+10:07:40                 gitserver | t=2021-10-19T10:07:40+0000 lvl=warn msg=http method=POST url=/repo-update code=200 duration=17.7233236s
+10:08:21           zoekt-webserver | 2021/10/19 10:08:21 loading 1 shards
+10:08:21         zoekt-indexserver | 2021/10/19 10:08:21 updated index github.com/sourcegraph/sourcegraph@HEAD=71ff24af8000bea375d6ded9db0e62f7f92728a6 in 1m9.7204963s
+10:08:40                 gitserver | t=2021-10-19T10:08:40+0000 lvl=warn msg=http method=POST url=/repo-update code=200 duration=15.0297278s
