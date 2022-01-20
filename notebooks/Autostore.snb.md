@@ -3,18 +3,18 @@
 
 [https://sourcegraph.com/search](https://sourcegraph.com/search)
 
-##How and Why do developers and engineers use Code Search?
+## How and Why do developers and engineers use Code Search?
 
-###Where?
+### Where?
 Where a specific piece of information exists in the codebase; for example, a function definition or configuration, all usages of an API, or just where a specific file is in the repository.
 
-###What?
+### What?
 What is the purpose of this part of the codebase? What is it doing?
-###How?
+### How?
 How have my colleagues/peers implemented X? Help me find a specific API and help me understand how the API should be applied to a particular problem?
-###Why?
+### Why?
 Why is the code behaving differently than expected? Target specific versions of the codebase that maybe relevant to a production install.
-###Who and When?
+### Who and When?
 Who or when someone introduced a certain piece of code? 
 
 ### Incident Tracking
@@ -45,7 +45,7 @@ performing background repo update -file:\.md patternType:literal
 ```
 
 
-##Developer Onboarding / Velocity
+## Developer Onboarding / Velocity
 
 - creating new function
 - reusing existing code
@@ -114,7 +114,7 @@ repo:^github\.com/sourcegraph/sourcegraph$ file:^enterprise/internal/authz/authz
 
 So now we have a more IDE-like view. We have the file in the main pane. And on the left we have the files that are in the same directory in the repo and also symbols defined in this source code. In the main pane we provide code intelligence via a hover tooltip. We can see the function definition, comments and we can go to the definition and find references, and that is irrespective whether these are in this repo or a separate repo.
 
-###	 Adding Context
+## Adding Context
 
 What if we could add additional information whilst navigating the codebase? This might help us better understand who to discuss potential changes with, what is the test coverage across a particular file and there any concerns in terms of code quality. In Sourcgraph we do this using extensions. 
 
@@ -139,10 +139,10 @@ So being able to find and fix potential bad code patterns is important - it help
 So as an example lets take a look at use of the latest tag when specifying a docker image. This is an anti-pattern - its non deterministic when trying to build an image. So what if we could find where it occurs in our codebase so that we can make the necessary changes. Furthermore what if we could be alerted when someone introduces or reintroduces this pattern? Would it be useful to track how quicly we are migrating away from this pattern? And what if we could automatically refactor our code?
 
 ```sourcegraph
-^FROM (\w+\/)?\w+:latest($|\s) file:Dockerfile repo:sourcegraph patterntype:regexp
+^FROM (\w+\/)?\w+:latest($|\s) file:Dockerfile repo:sourcegraph/sourcegraph patterntype:regexp
 ```
 
 ```sourcegraph
-type:diff ^FROM (\w+\/)?\w+:latest($|\s) file:Dockerfile repo:sourcegraph select:commit.diff.added patterntype:regexp
+type:diff ^FROM (\w+\/)?\w+:latest($|\s) file:Dockerfile repo:sourcegraph/sourcegraph select:commit.diff.added patterntype:regexp
 ```
 
