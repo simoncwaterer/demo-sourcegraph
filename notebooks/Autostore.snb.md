@@ -10,15 +10,17 @@ Where a specific piece of information exists in the codebase; for example, a fun
 
 ### What?
 What is the purpose of this part of the codebase? What is it doing?
+
 ### How?
 How have my colleagues/peers implemented X? Help me find a specific API and help me understand how the API should be applied to a particular problem?
+
 ### Why?
 Why is the code behaving differently than expected? Target specific versions of the codebase that maybe relevant to a production install.
+
 ### Who and When?
 Who or when someone introduced a certain piece of code? 
 
-### Incident Tracking
-
+### Search 101
 So if I wanted to find some scary code I might run the following search query -
 
 [Here be dragons](https://sourcegraph.com/search?q=context:global+here+be+dragons&patternType=literal)
@@ -35,6 +37,7 @@ We will come back to regular expressions in a moment but I just wanted to touch 
 fprintf(..., "ERROR: ...", ...) lang:c repo:^github\.com/torvalds/linux$ patternType:structural
 ```
 
+### Incident Tracking
 
 Let us take a look at another example using literal search. Let us assume that I have to do some troubleshooting. I have an error message that I am not familiar with. If I can search for the error message I can see where in the code the message was generated. And begin to determine the root cause. Here we have a log file - a Sourcegraph log file in fact - I can see the following error in this file. 
 

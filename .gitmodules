@@ -1,3 +1,0 @@
-[submodule "deploy-sourcegraph"]
-	path = deploy-sourcegraph
-	url = https://github.com/simoncwaterer/deploy-sourcegraph.git
