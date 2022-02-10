@@ -1,4 +1,4 @@
-# Picnic
+# Adidas
 
 
 
@@ -50,9 +50,10 @@ repo:^github\.com/sourcegraph/sourcegraph$ lang:Go (actor.WithActor(...) OR acto
 ```
 
 We could include the source code in a wiki but ....
+
 We could share this query with out colleagues but ....
 
-Search Notebooks allow you to highlight and detail patterns, anti-patterns, good practice and dev/eng processes.
+Sourcegraph Notebooks allow you to highlight and detail patterns, anti-patterns, good practice and dev/eng processes.
 
 [Sourcegraph Notebooks](https://sourcegraph.com/notebooks?tab=explore)
 
@@ -62,6 +63,8 @@ Search Notebooks allow you to highlight and detail patterns, anti-patterns, good
 ## Code Reuse
 
 Find code to reuse or repurpose enables to spend more time writing new code, less time debugging and testing. 
+
+### Find Code
 
 * How to find code to reuse?
 * Is it *good* code?
@@ -78,10 +81,10 @@ context:global repo:^github\.com/sourcegraph/sourcegraph$ new auth provider -fil
 ```
 
 ```sourcegraph
-context:global repo:^github\.com/sourcegraph/sourcegraph$ new auth provider -file:test lang:go select:symbol patternType:regexp 
+context:global repo:^github\.com/sourcegraph/sourcegraph$ new auth provider -file:test lang:go type:symbol patternType:regexp 
 ```
 
-
+### Enablement
 
 * How can I help my teammates make use of library / API?
 * Is it "successfull"?
@@ -92,9 +95,10 @@ context:global repo:^github\.com/sourcegraph/sourcegraph$ new auth provider -fil
 
 
 ```Sourcegraph
-context:global repo:^github\.com/sourcegraph/sourcegraph$ NewAuthzProvider
+context:global repo:^github\.com/sourcegraph/sourcegraph$ NewAuthzProvider patternType:regexp
 ```
 
+### Maintain
 
 * How can we make changes to our shared code across the organisation?
 * Can I track if somone is using a deprecated function or API?
@@ -105,7 +109,7 @@ context:global repo:^github\.com/sourcegraph/sourcegraph$ NewAuthzProvider
 [Create new code monitor](https://demo.sourcegraph.com/code-monitoring/new)
 
 ```sourcegraph
-type:diff repo:github.com/sourcegraph/sourcegraph NewAuthzProvider lang:go
+type:diff repo:github.com/sourcegraph/sourcegraph NewAuthzProvider lang:go patterntype:regexp
 ```
 
 
