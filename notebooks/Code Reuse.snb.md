@@ -32,6 +32,10 @@ So how might I do that with Sourcegraph?
 new auth provider lang:go repo:^github\.com/sourcegraph/sourcegraph$ -file:test patterntype:regexp
 ```
 
+select - symbol
+diff
+gitblame
+code intell
 
 
 
@@ -56,14 +60,25 @@ https://sourcegraph.com/github.com/Netflix/Hystrix/-/blob/hystrix-core/src/main/
 notebooks ?
 apache nifi or apache spark?
 
-
-Developers: By finding existing code for reuse, you can avoid spending time on problems that you know a teammate has already solved. This means a more secure and more coherent codebase, and means that you can spend your time on more interesting work. 
 Scenario to demonstrate use case
 I’m going to show you how Sourcegraph makes it easy to find reusable code, understand its usage trends over time, and how simple it is to safely maintain shared libraries. 
 Proof Points that Support Desired Outcome
 Vignette 1:
 Tell: I can find code my teammates have written to avoid duplication and save myself hours redoing work that’s already been done and spend my time writing new code. Plus, if the existing code is already tested, I can rely on those existing tests for stability and security of the code I want to implement. 
-Show: Search for an auth provider implementation that I can repurpose for my own work. (Regex and symbol search.)  Who built this, and who can ask about this if I need to? (Git blame.) What’s the historical context of this code? (Diff search.) Is it tested? (CodeCov) Is it being used elsewhere in the code already? (Find references.) I feel good about this—how do I open this file locally to start to reuse the code? (VSCode or other IDE extension.)
+Show: 
+I’m going to search for an auth provider implementation that I can repurpose for my own work using regex for a fuzzy match 
+context:global repo:^github\.com/sourcegraph/sourcegraph$ new auth provider  patternType:regexp 
+I can also add type:symbol to return a list of symbols
+I probably want to know who built this, and who can ask about this if I need to 
+Reference the inline blame, how long ago it was written
+Where else is it being used?
+Find references
+It might even be useful to see what’s the most recent context/usage around this code
+Diff search
+Is it tested? 
+Toggle the CodeCov extension
+After all the understanding I’ve easily gathered now, I can jump into my editor and begin to work with NewAuthzProviders 
+Open in VSCode 
 Tell: I quickly found example code I can trust for reuse, saving myself time and reinforcing the culture of code reuse while following standard practices in my organization.
 Ask: 
 Dev: As an Engineer, how do you find whether someone else in the company has written the piece of code that you need before? 
@@ -71,7 +86,13 @@ How do you know if it’s “good” code? Signals: how old is it? Is it maintai
 
 Vignette 2:
 Tell: As the maintainer or stakeholder of this code, I want to understand its usage over time and track its growth within the team. I also want to encourage its use by other teammates. 
-Show: Create a notebook to show a new developer all the uses of authz in the code base and guide them to use it from the get-go—live search results mean that they’ll always have real examples to use. I can even take that same info and build my own live documentation using our API, if I want to go beyond what notebooks offer: https://react-components.vercel.app/components/alert . And if I want to stay on top of adoption, I can create an insight from the original search and quickly track the growth of authz use in our codebase over the past year.
+Show: 
+Create a notebook to show a new developer all the uses of authz in the code base and guide them to use it from the get-go—live search results mean that they’ll always have real examples to use. 
+Notebook: https://demo.sourcegraph.com/notebooks/Tm90ZWJvb2s6NA== 
+If I want to stay on top of adoption, I can create an insight from the original search and quickly track the growth of authz use in our codebase over the past year.
+Search
+Click Create Insight
+Show the live preview with the shown increase in use over the past year (no need to actually save the insight)
 Tell: I can easily understand the growth in popularity of this shared library and call out distinct time savings and code stability thru code reuse. I can easily see how large of an undertaking it would be to move to another library instead of this one if we ever are considering doing so.
 Ask: 
 How do you identify what code should be extracted into common libraries? Is it informal bottom-up or top-down?
@@ -83,12 +104,15 @@ How do developers discover that there’s some code they can reuse inside your o
 
 Vignette 3: 
 Tell: Sourcegraph enables me to reliably and efficiently maintain the code that is being reused in my org. 
-Show: Naming conventions change, or something more complex, and I can quickly update all of the places where this common code is used to the new convention. Batch change update. In addition to the passive tracking of the old convention in Insights, I can add a Monitor to let me know if someone commits code using that out-of-date library—and I can reach out to them to tell them not to do that. 
+Show: Naming conventions change, or something more complex, and I can quickly update all of the places where this common code is used to the new convention, and ensure we are alerted on any use of the outdated convention. 
+Batch change to update all the references to the original naming convention
+https://demo.sourcegraph.com/users/christine/batch-changes/Rename-newAuthzProvider?visible=5
+Create a code monitor with the same query to be alerted on any new commits using newAuthzProvider 
+Trigger: newAuthzProvider lang:go
 Tell: I’ve eliminated the overhead of code maintenance which encourages more code reuse and code stability. Long depreciation cycles are no more, and no more need for tracking spreadsheets.
 Ask: 
 What’s the most recent instance of code reuse, and how’d it happen?
 What are your team’s goals around code reuse or innersourcing?
 How do you keep shared libraries and APIs up-to-date across your entire organization?
-
 
 
