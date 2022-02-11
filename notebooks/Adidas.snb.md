@@ -113,11 +113,11 @@ type:diff repo:github.com/sourcegraph/sourcegraph NewAuthzProvider lang:go patte
 ```
 
 
-# Misc ignore 
+# Miscellaneous 
 
 
 
-### Circle CI Pipeline
+## Circle CI Pipeline
 
 
 If we are using a CI pipeline and we want to updated a particular docker image how can we determine the impact of the change? What repos and files are effected? Lets try and find the impacted files. 
@@ -132,18 +132,29 @@ And just looking at facebook repos
 file:circle.*\.yml lang:Yaml -\simage:\s+circleci/node repo:facebook patterntype:regexp
 ```
 
-and NewsUK repos
-
-```sourcegraph
-file:circle.*\.yml lang:Yaml -\simage:\s+circleci/node repo:newsuk patterntype:regexp
-```
-
-####Monitor Code Changes
-
-Now if I look at the documentation it appears that this image has now been replaced by another image - circleci/node:tag -> cimg/node:tag. Perhaps I want to know if anyone makes an update to a pipeline and adds the old image - it would be useful to be notified. With sourcegraph we can use search as a platform to enable us to monitor changes in the code base through code monitoring.
-
+This image has now been replaced by another image - cimg/node:tag - I want to know if anyone makes an update to a pipeline and adds the old image.
 
 ```sourcegraph
 file:circle.*\.yml lang:Yaml -\simage:\s+circleci/node repo:^github\.com/newsuk type:diff select:commit.diff.added  patternType:regexp
 ```
 
+## Docker Tag
+
+Its bad practice to use the latest tag when specifying a docker image as it does not pin a specific image to the container that will be created. A potential security vulnerability as well. We can find where in the codebase this occurs.
+
+```sourcegraph
+^FROM (\w+\/)?\w+:latest($|\s) file:Dockerfile patterntype:regexp
+```
+
+## React Class Components
+
+```sourcegraph
+extends\s(React\.)?(Pure)?Component patterntype:regexp
+```
+
+```sourcegraph
+patternType:regexp const\s\w+:\s(React\.)?FunctionComponent
+```
+
+
+[React migration class to function](https://demo.sourcegraph.com/insights/edit/aW5zaWdodF92aWV3OiJzZWFyY2hJbnNpZ2h0cy5pbnNpZ2h0LmRpcmVjdG9yeS5yZWFjdEZ1bmN0aW9uQ29tcG9uZW50TWlncmF0aW9uIg==?dashboardId=all)
