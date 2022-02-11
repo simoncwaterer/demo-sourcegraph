@@ -59,7 +59,7 @@ context:global repo:^github\.com/sourcegraph/sourcegraph$ new auth provider -fil
 [New Authz Providers Notebook](https://demo.sourcegraph.com/notebooks/Tm90ZWJvb2s6NA==)
 
 
-```Sourcegraph
+```sourcegraph
 context:global repo:^github\.com/sourcegraph/sourcegraph$ NewAuthzProvider patternType:regexp
 ```
 
@@ -74,7 +74,7 @@ context:global repo:^github\.com/sourcegraph/sourcegraph$ NewAuthzProvider patte
 [Create new code monitor](https://demo.sourcegraph.com/code-monitoring/new)
 
 ```sourcegraph
-type:diff repo:github.com/sourcegraph/sourcegraph NewAuthzProvider lang:go patterntype:regexp
+context:global type:diff repo:github.com/sourcegraph/sourcegraph NewAuthzProvider lang:go patterntype:regexp
 ```
 
 ## Developer Onboarding
