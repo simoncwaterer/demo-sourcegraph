@@ -5,5 +5,6 @@ locals {
     Environment = var.environment
     ServiceCatalogueId = 1
     ServiceName = "myService"
+    RepositoryName = "myrepo"
   }
 }
