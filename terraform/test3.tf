@@ -1,10 +1,10 @@
 locals {
   name = "backstage"
-  
+
   tags = {
-    Environment = var.environment
+    Environment        = var.environment
     ServiceCatalogueId = 1
-    ServiceName = "myService"
-    RepositoryName = "myrepo"
+    ServiceName        = "myService"
+    RepositoryName     = "myrepo"
   }
 }

@@ -1,0 +1,47 @@
+mutation CreateLineChartSearchInsight($input: LineChartSearchInsightInput!) {
+  createLineChartSearchInsight(input: $input) {
+    view {
+      id
+    }
+  }
+}
+
+{
+  "input": {
+    "options": {
+      "title": "newsuk"
+    },
+    "dataSeries": [{
+      "query": "lang:javascript",
+      "options": {
+        "label": "javascript",
+        "lineColor": "#6495ED"
+      },
+      "repositoryScope": {
+        "repositories": []
+      },
+      "timeScope": {
+        "stepInterval": {
+          "unit": "MONTH",
+          "value": 1
+        }
+      }
+    },
+    {
+      "query": "lang:typescript",
+      "options": {
+        "label": "typescript",
+        "lineColor": "#DE3163"
+      },
+      "repositoryScope": {
+        "repositories": ["github.com/sourcegraph/sourcegraph"]
+      },
+      "timeScope": {
+        "stepInterval": {
+          "unit": "MONTH",
+          "value": 1
+        }
+      }
+    }]
+  }
+}   

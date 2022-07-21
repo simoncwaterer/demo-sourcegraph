@@ -1,0 +1,17 @@
+[pattern]
+match='''
+locals {
+   :[value]
+   default_tags = {:[block]
+   }
+}
+'''
+rewrite=
+'''
+locals {
+   :[value]
+   default_tags = {:[block]
+    Repository = "${{repository.name}}"
+   }
+}
+'''

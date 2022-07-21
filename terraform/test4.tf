@@ -1,9 +1,9 @@
 locals {
   name = "backstage"
-  
+
   tags = {
-    Environment = var.environment
+    Environment        = var.environment
     ServiceCatalogueId = 1
-    ServiceName = "myService"
+    ServiceName        = "myService"
   }
 }
