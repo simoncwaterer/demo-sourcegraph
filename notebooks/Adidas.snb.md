@@ -9,6 +9,8 @@
 
 A search context represents a set of repositories at specific revisions on a SG instance. It is one way to target a specific search scope. So for example I could create a search context that targets my frontend code.
 
+This is an experiment.
+
 ## Introduction to Search
 
 Lets find some scary code
